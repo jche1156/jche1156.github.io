@@ -1,3 +1,4 @@
+
 ---
 import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
@@ -15,19 +16,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
   </div>
   <script>
     import { JsShell } from "js-shell-emulator";
-    const commands = {
+    const commands: any = {
         color: {
           handler: changeColor,
           description: 'Random background & text color'
         },
         clear: {
-          handler: (shell) => {
+          handler: (shell: any) => {
             shell.clear();
           },
           description: 'Clear console.'
         },
         cd: {
-          handler: (shell, argv) => {
+          handler: (shell: any, argv: any) => {
             shell.setPrompt(makePS1(argv[1] || '~'));
           },
           description: 'cd [dir] Change working directory.'
@@ -49,13 +50,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
           description: 'restart shell process'
         },
         time: {
-          handler: (shell) => {
+          handler: (shell: any) => {
             shell.print((new Date()).toString());
           },
           description: 'What time is it?'
         },
         exit: {
-          handler: (shell) => {
+          handler: (shell: any) => {
             shell.print('Bye!');
           },
           description: 'Stop the shell prompt'
@@ -82,7 +83,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
       '#ff1c1c'
     ];
 
-    function padToNChars(string, size) {
+    function padToNChars(string:string, size:number) {
       let newString = '';
       for (let index = 0; index < (size - string.length); index++) {
         newString = newString + ' ';
@@ -90,7 +91,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
       return string + newString;
     }
 
-    function helpMenu(shell) {
+    function helpMenu(shell: any) {
       shell.printHTML('GNU Fake Shell, version 0.1.13-not-released\n' +
         'These shell commands are defined internally.  Type \'help\' to see this list.\n');
 
@@ -103,7 +104,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
       shell.print('--------------------------------------------------------------');
     }
 
-    async function joke(shell) {
+    async function joke(shell: any) {
       const response = await fetch('https://icanhazdadjoke.com/', {
         headers: { Accept: 'application/json' }
       });
@@ -114,7 +115,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
       shell.newLine();
     }
 
-    async function form(shell) {
+    async function form(shell: any) {
       const originalPS1 = shell._promptPS1.innerHTML;
       shell.clear()
         .setPrompt('> ')
@@ -139,7 +140,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
       shell.setPrompt(originalPS1);
     }
 
-    function changeColor(shell) {
+    function changeColor(shell: any) {
       let newBgColor, newTextColor;
       do {
         newBgColor = bgColors[Math.floor(Math.random() * bgColors.length)];
@@ -154,13 +155,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
         .setTextColor(newTextColor);
       }
 
-      function makePS1(path) {
+      function makePS1(path: string) {
         if (path.slice(-1) !== '/') {
           path += '/';
         }
         return `<strong class="text-green-400">\njche@sfo:${path}\n$ </strong>`;
       }
-      async function startShell(shell) {
+      async function startShell(shell: any) {
         shell
           .clear()
           .print('Type "help" to see the commands list.');
