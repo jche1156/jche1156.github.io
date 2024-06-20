@@ -41,5 +41,9 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
+<!-- Alpine.js -->
+<script is:inline defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 <!-- HTMX -->
-<script is:inline src="https://unpkg.com/htmx.org@1"></script>
+<script is:inline defer src="https://unpkg.com/htmx.org@1"></script>
+
