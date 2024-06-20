@@ -1,10 +1,11 @@
 ---
-export const partial = true
+export const partial = true;
 ---
+
 <button
   class="btn btn-secondary"
   @click="my_num = Math.floor(Math.random()*101)"
   x-init="$watch('my_num', () => {$el.outerHTML = $el.outerHTML;htmx.process(document.body);});"
   x-bind:hx-get="'api/greetings/'+my_num+'/'"
-  hx-swap="none"
->Hello</button>
+  hx-swap="none">Hello</button
+>

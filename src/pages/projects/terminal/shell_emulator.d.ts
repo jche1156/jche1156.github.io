@@ -1,1 +1,1 @@
-declare module 'js-shell-emulator'
+declare module "js-shell-emulator";

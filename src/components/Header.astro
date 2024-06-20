@@ -1,24 +1,24 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
 
 const buttonStyle = "btn btn-ghost text-xl";
 const places = [
-	{body: "Shell", href: "/projects/terminal"},
-	{body: "Blog", href: "/blog"},
-	{body: "About", href: "/about"},
+  { body: "Shell", href: "/projects/terminal" },
+  { body: "Blog", href: "/blog" },
+  { body: "About", href: "/about" },
 ];
 ---
 
-<header class="navbar text-primary bg-primary-content">
+<header class="navbar bg-primary-content text-primary">
   <div class="flex-1">
-		<HeaderLink class={buttonStyle} href="/">{SITE_TITLE}</HeaderLink>
-	</div>
-	</div class="flex-none">
-		{places.map((a) => 
-			<HeaderLink class={buttonStyle} href={a.href}>
-				{a.body}
-			</HeaderLink>
-		)}
-	</div>
+    <HeaderLink class={buttonStyle} href="/">{SITE_TITLE}</HeaderLink>
+  </div>
 </header>
+{
+  places.map((a) => (
+    <HeaderLink class={buttonStyle} href={a.href}>
+      {a.body}
+    </HeaderLink>
+  ))
+}
