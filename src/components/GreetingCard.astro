@@ -1,0 +1,32 @@
+---
+import { SITE_TITLE } from "../consts";
+
+// how many greetings are available
+import { greetings } from "@api/greetings/greetings.js";
+const rand_id = `Math.floor(Math.random()*${greetings.length})`;
+---
+
+<div class="hero-content text-center">
+  <div class="max-w-md" x-data={`{greet_id: ${rand_id}}`}>
+    <h1 id="greeting" class="text-5xl font-bold">{SITE_TITLE}</h1>
+    <p class="py-6">Welcome to my site</p>
+    <button
+      id="greeter"
+      class="btn btn-secondary"
+      @click={`greet_id = ${rand_id}`}
+      x-init="$watch('greet_id', () => {$el.outerHTML = $el.outerHTML;htmx.process(document.body);})"
+      x-bind:hx-get="'api/greetings/'+greet_id+'/'"
+      hx-target="#greeting"
+    >
+      Hey
+    </button>
+  </div>
+  <script is:inline>
+    setTimeout(() => {
+      document.getElementById("greeter").click();
+      setTimeout(() => {
+        document.getElementById("greeting").innerHTML = "JCHE";
+      }, 2000);
+    }, 2000);
+  </script>
+</div>

@@ -1,43 +1,10 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Layout from "@layouts/Layout.astro";
+import GreetingCard from "@components/GreetingCard.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main class="hero min-h-screen bg-primary-content text-primary">
-      <div class="hero-content text-center">
-        <div class="max-w-md" x-data="{my_num: Math.floor(Math.random()*101)}">
-          <h1 id="greeting" class="text-5xl font-bold">{SITE_TITLE}</h1>
-          <p class="py-6">Welcome to my site</p>
-          <button
-            id="greeter"
-            class="btn btn-secondary"
-            @click="my_num = Math.floor(Math.random()*101)"
-            x-init="$watch('my_num', () => {$el.outerHTML = $el.outerHTML;htmx.process(document.body);})"
-            x-bind:hx-get="'api/greetings/'+my_num+'/'"
-            hx-swap="none"
-          >
-            Hey
-          </button>
-        </div>
-      </div>
-    </main>
-    <Footer />
-    <script is:inline>
-      setTimeout(() => {
-        document.getElementById("greeter").click();
-        setTimeout(() => {
-          document.getElementById("greeting").innerHTML = "JCHE";
-        }, 2000);
-      }, 2000);
-    </script>
-  </body>
-</html>
+<Layout>
+  <main class="hero min-h-screen bg-primary-content text-primary">
+    <GreetingCard />
+  </main>
+</Layout>
