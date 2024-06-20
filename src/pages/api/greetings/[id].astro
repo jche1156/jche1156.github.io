@@ -1,0 +1,19 @@
+---
+export const partial = true;
+
+import { greetings } from "./greetings.js";
+
+export function getStaticPaths() {
+  var routes = [];
+  [...Array(greetings.length).keys()].forEach(function (i) {
+    routes.push({ params: { id: i } });
+  });
+  return routes;
+}
+
+const { id } = Astro.params;
+---
+
+<h1 id="greeting" class="text-5xl font-bold" hx-swap-oob="true">
+  {greetings[id]}
+</h1>

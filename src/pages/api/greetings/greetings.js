@@ -1,17 +1,6 @@
----
-export const partial = true;
+// import { greetings } from './greetings.js';
 
-export function getStaticPaths() {
-  var validRoutes = [];
-  var a = [...Array(101).keys()].map((a) => a.toString());
-  a.forEach(function (entry) {
-    var route = {};
-    route["params"] = { greeting_id: entry };
-    validRoutes.push(route);
-  });
-  return validRoutes;
-}
-const greetings_set = [
+export const greetings = [
   "Hallo", // Afrikaans
   "Përshëndetje", // Albanian
   "እው ሰላም ነው", // Amharic
@@ -114,10 +103,3 @@ const greetings_set = [
   "Xin chào", // Vietnamese
   "Molo", // Xhosa
 ];
-
-const { greeting_id } = Astro.params;
----
-
-<h1 id="greeting" class="text-5xl font-bold" hx-swap-oob="true">
-  {greetings_set[greeting_id]}
-</h1>

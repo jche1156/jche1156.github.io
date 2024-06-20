@@ -31,12 +31,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       </div>
     </main>
     <Footer />
-  </body><script is:inline>
-    setTimeout(() => {
-      document.getElementById("greeter").click();
+    <script is:inline>
       setTimeout(() => {
-        document.getElementById("greeting").innerHTML = "JCHE";
+        document.getElementById("greeter").click();
+        setTimeout(() => {
+          document.getElementById("greeting").innerHTML = "JCHE";
+        }, 2000);
       }, 2000);
-    }, 2000);
-  </script>
+    </script>
+  </body>
 </html>
