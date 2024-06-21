@@ -1,9 +1,9 @@
 ---
 import { SITE_TITLE } from "../consts";
-
 import { greetings } from "@api/greetings/greetings.js";
+
 const rand_id = `Math.floor(Math.random()*${greetings.length})`;
-const shuffle_cmd = `htmx.ajax('GET', 'api/greetings/'+${rand_id}+'/', '#greeting1');htmx.ajax('GET', 'api/greetings/'+${rand_id}+'/', '#greeting2')`;
+const hx_cmd = (n: number) => `htmx.ajax('GET', 'api/greetings/'+${rand_id}+'/', '#greeting'+${n})`;
 ---
 
 <div class="hero-content text-center">
@@ -11,7 +11,7 @@ const shuffle_cmd = `htmx.ajax('GET', 'api/greetings/'+${rand_id}+'/', '#greetin
     <button
       id="greeting1"
       class="btn btn-outline btn-accent text-2xl font-bold"
-      hx-on:click={shuffle_cmd}
+      hx-on:click={hx_cmd(2)}
     >
       {SITE_TITLE}
     </button>
@@ -19,7 +19,7 @@ const shuffle_cmd = `htmx.ajax('GET', 'api/greetings/'+${rand_id}+'/', '#greetin
     <button
       id="greeting2"
       class="btn btn-primary text-xl text-base-300"
-      hx-on:click={shuffle_cmd}
+      hx-on:click={hx_cmd(1)}
     >
       Hey
     </button>
