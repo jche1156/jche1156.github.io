@@ -1,32 +1,35 @@
 ---
 import { SITE_TITLE } from "../consts";
 
-// how many greetings are available
 import { greetings } from "@api/greetings/greetings.js";
 const rand_id = `Math.floor(Math.random()*${greetings.length})`;
+const shuffle_cmd = `htmx.ajax('GET', 'api/greetings/'+${rand_id}+'/', '#greeting1');htmx.ajax('GET', 'api/greetings/'+${rand_id}+'/', '#greeting2')`;
 ---
 
 <div class="hero-content text-center">
-  <div class="max-w-md" x-data={`{greet_id: ${rand_id}}`}>
-    <h1 id="greeting" class="text-5xl font-bold">{SITE_TITLE}</h1>
-    <p class="py-6">Welcome to my site</p>
+  <div class="max-w-md">
     <button
-      id="greeter"
-      class="btn btn-secondary"
-      @click={`greet_id = ${rand_id}`}
-      x-init="$watch('greet_id', () => {$el.outerHTML = $el.outerHTML;htmx.process(document.body);})"
-      x-bind:hx-get="'api/greetings/'+greet_id+'/'"
-      hx-target="#greeting"
+      id="greeting1"
+      class="btn btn-outline btn-accent text-2xl font-bold"
+      hx-on:click={shuffle_cmd}
+    >
+      {SITE_TITLE}
+    </button>
+    <h1 class="py-6 text-xl text-neutral-content">Welcome to my site</h1>
+    <button
+      id="greeting2"
+      class="btn btn-primary text-xl text-base-300"
+      hx-on:click={shuffle_cmd}
     >
       Hey
     </button>
   </div>
   <script is:inline>
     setTimeout(() => {
-      document.getElementById("greeter").click();
+      document.getElementById("greeting2").click();
       setTimeout(() => {
-        document.getElementById("greeting").innerHTML = "JCHE";
-      }, 2000);
-    }, 2000);
+        document.getElementById("greeting1").innerHTML = "JCHE";
+      }, 1200);
+    }, 2300);
   </script>
 </div>

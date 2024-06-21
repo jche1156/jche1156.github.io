@@ -4,7 +4,7 @@ export const partial = true;
 import { greetings } from "./greetings.js";
 
 export function getStaticPaths() {
-  var routes:any = [];
+  var routes: any = [];
   [...Array(greetings.length).keys()].forEach(function (i) {
     routes.push({ params: { id: i } });
   });
