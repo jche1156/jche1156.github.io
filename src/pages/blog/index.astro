@@ -1,47 +1,36 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import Layout from "@layouts/Layout.astro"
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 ---
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <section>
-        <ul>
-          {
-            posts.map((post) => (
-              <li>
-                <a href={`/blog/${post.slug}/`}>
+<Layout>
+  <main class="py-8">
+    <section>
+      <ul class="space-y-4">
+        { posts.map((post) => (
+           <li class="w-4/5 min-w-80 mx-auto">
+              <a class="card glass bg-base-300 text-base-content md:card-side shadow-md rounded-xl" href={`/blog/${post.slug}/`}>
+                <figure>
                   <img
-                    width={720}
-                    height={360}
+                    width={360}
+                    height={180}
                     src={post.data.heroImage}
-                    alt=""
-                  />
-                  <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
-                    <FormattedDate date={post.data.pubDate} />
+                    alt="Album"
+                    class="h-3/5 md:h-full w-full md:w-96"/>
+                </figure>
+                <div class="card-body w-full sm:w-[60vh]" href={`/blog/${post.slug}/`}>
+                  <h2 class="card-title text-3xl">{post.data.title}</h2>
+                  <p class="description">
+                    {post.data.description}
                   </p>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+                </div>
+              </a>
+            </li> 
+          ))}
+      </ul>
+    </section>
+  </main>
+</Layout>

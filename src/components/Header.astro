@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import ThemeController from "./ThemeController.astro"
 import { SITE_TITLE } from "../consts";
 
 const buttonStyle = "btn btn-ghost text-xl";
@@ -10,15 +11,16 @@ const places = [
 ];
 ---
 
-<header class="navbar bg-primary-content text-primary">
+<header class="navbar bg-base-100 text-base-content">
   <div class="flex-1">
     <HeaderLink class={buttonStyle} href="/">{SITE_TITLE}</HeaderLink>
-{
-  places.map((a) => (
-    <HeaderLink class={buttonStyle} href={a.href}>
-      {a.body}
-    </HeaderLink>
-  ))
-}
+    {
+      places.map((a) => (
+        <HeaderLink class={buttonStyle} href={a.href}>
+          {a.body}
+        </HeaderLink>
+      ))
+    }
   </div>
+  <ThemeController />
 </header>
