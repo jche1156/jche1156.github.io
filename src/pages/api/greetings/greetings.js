@@ -56,7 +56,7 @@ export const greetings = [
   "Slav", // Kurdish
   "ສະບາຍດີ", // Lao
   "Salve", // Latin
-  "Sveika or Sveiks", // Latvian
+  "Sveika", // Latvian
   "Sveiki", // Lithuanian
   "Moien", // Luxembourgish
   "Salama", // Malagasy
@@ -66,7 +66,6 @@ export const greetings = [
   "Kia ora", // Maori
   "नमस्कार", // Marathi
   "сайн уу", // Mongolian
-  "Niltze Tialli Pialli", // Nahuatl
   "Ya’at’eeh", // Navajo
   "नमस्कार", // Nepali
   "Hei", // Norwegian

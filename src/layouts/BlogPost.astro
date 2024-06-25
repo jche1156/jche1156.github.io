@@ -10,19 +10,19 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <Layout>
   <main>
     <article class="min-h-screen w-full leading-relaxed">
-      <div class="title w-full max-w-prose px-4 mx-auto">
+      <div class="title w-full max-w-prose px-8 mx-auto">
         <h1 class="text-3xl sm:text-5xl font-bold">{title}</h1>
-        <p class="w-4/5 text-md sm:text-lg italic font-normal">{description}</p>
+        <p class="pr-24 text-md sm:text-lg italic font-normal">{description}</p>
       </div>
-      <div class="hero-image max-w-[640px] mx-auto py-6">
+      <div class="hero-image md:max-w-[720px] mx-auto py-6">
         {
           heroImage && (
             <img width={1020} height={510} src={heroImage} alt="" class="md:rounded-xl"/>
           )
         }
       </div>
-      <div class="max-w-prose px-4 mx-auto">
-        <div class="date">
+      <div class="max-w-prose px-8 mx-auto">
+        <div class="date text-neutral-content text-md italic">
           <FormattedDate date={pubDate} />
           {
             updatedDate && (
